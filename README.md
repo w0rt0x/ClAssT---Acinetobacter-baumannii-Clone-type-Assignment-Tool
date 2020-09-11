@@ -76,9 +76,4 @@ python Main.py
 
 [Server Deployment](https://flask.palletsprojects.com/en/master/deploying/)
 
-# Add and remove Filters / Login
-```
-username: AKEbersberger
-password: CavBGmbf20)>
-```
 
