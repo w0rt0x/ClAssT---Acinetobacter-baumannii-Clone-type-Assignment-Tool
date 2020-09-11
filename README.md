@@ -3,7 +3,7 @@ ClAssT uses Bloom Filters and Support Vector Machines to classify sequence-reads
 
 The instructions are in the intructions.pdf file.
 
-The requirements are down below.
+The requirements are down below and in the requirements.txt file.
 
 For security reasons, you need to set up an individual security key and a username/password for a login. More information in the instructions.
 
