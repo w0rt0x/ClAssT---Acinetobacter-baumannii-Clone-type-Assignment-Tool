@@ -1,6 +1,8 @@
 # ClAssT - Clone-type Assignment Tool for A.baumannii
 ClAssT uses Bloom Filters and Support Vector Machines to classify sequence-reads (.fq-files) or assembled genomes (.fasta or .fna files) to one of the eight international clones of A.baumannii, if the input sequence ist part of any of the eight clones.
 
+![alt text](https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/static/Workflow_ClAssT.png)
+
 The instructions are in the intructions.pdf file.
 
 The requirements are down below and in the requirements.txt file.
@@ -75,5 +77,10 @@ python Main.py
 # Server Deployment 
 
 [Server Deployment](https://flask.palletsprojects.com/en/master/deploying/)
+
+# About this project
+This project is an attempt to support hospital staff in a possible A.baumannii outbreak. A.baumannii is able to build up antibiotic resistance and can cause deadly nosocomial infections.
+
+This is a bachelor thesis project, no warranty is given. Check the licence for more information.
 
 
