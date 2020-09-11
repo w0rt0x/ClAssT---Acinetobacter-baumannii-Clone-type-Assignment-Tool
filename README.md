@@ -7,6 +7,8 @@ ClAssT uses Bloom Filters and Support Vector Machines to classify sequence-reads
 
 The Tool uses Bloom Filters to store IC-specific reference k-meres. The k-meres of the input-sequences will be checked for membership in all of the selected IC's. Hits are counted and then divided by the number of total tested k-meres of the input-sequence. This produces a 'Scre-Vector' with values between 0 and 1. This Vector will then be classfified by Support Vector Machines (SVM).
 
+If you are using sequence-reads for this analysis, then you can avoid the assembly-process. On the other hand, this Tool need high quality sequence-reads because its using exact matches of k-meres.
+
 The instructions are in the intructions.pdf file.
 
 The requirements are down below and in the requirements.txt file.
