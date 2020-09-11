@@ -1,6 +1,12 @@
-# Python
+# ClAssT - Clone-type Assignment Tool for A.baumannii
+ClAssT uses Bloom Filters and Support Vector Machines to classify sequence-reads (.fq-files) or assembled genomes (.fasta or .fna files) to one of the eight international clones of A.baumannii, if the input sequence ist part of any of the eight clones.
 
-Python 3.8
+The instructions are in the intructions.pdf file.
+
+The requirements are down below.
+
+For security reasons, you need to set up an individual security key and a username/password for a login. More information in the instructions.
+
 
 # Python Modules - Requirements
 ## Install Requirements
@@ -8,7 +14,7 @@ Python 3.8
 pip install -r requirements.txt
 ```
 
-## List of used Modules
+## List of used Modules for Python (3.8)
 Flask	1.1.2	
 
 Flask-Bcrypt	0.7.1	
