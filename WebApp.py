@@ -13,6 +13,7 @@ from Classifier import classify, cut_csv, IC3_classify
 import time
 from Filter_Editor import add_filter, remove_filter, edit_svm, remove_oxa, add_oxa
 import logging
+import pickle
 # Source Logging and Error Handling
 # https://flask.palletsprojects.com/en/1.1.x/logging/
 # https://pythonise.com/series/learning-flask/flask-error-handling
@@ -29,8 +30,10 @@ login_manager = LoginManager(app)
 
 # Login System is needed, otherwise the login can be skipped and
 # the add/remove filter function is for everyone
-allowed_user = (b'$2b$12$BDm/V.wY54Y/WpllWAJHpumh7J/nnxVgxbm01iomvQPy2v6ixGi2K',
-                b'$2b$12$nB/HaB3etbNhj9FhqayA2eSXuQY4eyh0mbdP/c4aNN7N.WPHmz71i')
+#allowed_user = (b'$2b$12$BDm/V.wY54Y/WpllWAJHpumh7J/nnxVgxbm01iomvQPy2v6ixGi2K',
+                #b'$2b$12$nB/HaB3etbNhj9FhqayA2eSXuQY4eyh0mbdP/c4aNN7N.WPHmz71i')
+with open(r'config/login.txt', 'rb') as fp:
+    allowed_user = pickle.load(fp)
 
 # Error Handling:
 # https://pythonise.com/series/learning-flask/flask-error-handling
@@ -102,6 +105,7 @@ class User(UserMixin):
         """
         Check user request pwd and update authenticate status.
         """
+
         if bcrypt.check_password_hash(allowed_user[1], pwd):
             self.is_authenticated = True
         else:
