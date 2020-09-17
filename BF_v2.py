@@ -296,34 +296,34 @@ class AbaumanniiBloomfilter:
                     # resetting hit counter
                     self.hits_per_filter = copy
 
-            # same, but with reverse complement
-            reads[i] = Seq(reads[i])
-            reads[i] = reads[i].reverse_complement()
-            k1 = reads[i][0:self.k]  # first k-mer
-            k2 = reads[i][len(reads[i]) - self.k:]  # last k-mer
-            mid = len(reads[i]) // 2
-            k3 = reads[i][mid:mid + self.k]  # k-mer in middle
+                # same, but with reverse complement
+                reads[i] = Seq(reads[i])
+                reads[i] = reads[i].reverse_complement()
+                k1 = reads[i][0:self.k]  # first k-mer
+                k2 = reads[i][len(reads[i]) - self.k:]  # last k-mer
+                mid = len(reads[i]) // 2
+                k3 = reads[i][mid:mid + self.k]  # k-mer in middle
 
-            # Taking sum of list as reference, if sum has not increased after testing those 3 kmeres,
-            # then the read won't be tested further
-            hit_sum = sum(self.hits_per_filter)
-            copy = deepcopy(self.hits_per_filter)
-            self.lookup(k1, True)
-            self.lookup(k2, True)
-            self.lookup(k3, True)
+                # Taking sum of list as reference, if sum has not increased after testing those 3 kmeres,
+                # then the read won't be tested further
+                hit_sum = sum(self.hits_per_filter)
+                copy = deepcopy(self.hits_per_filter)
+                self.lookup(k1, True)
+                self.lookup(k2, True)
+                self.lookup(k3, True)
 
-            # needs at least 2 of 3 hits to continue with read
-            if (sum(self.hits_per_filter) - hit_sum) > 1:
+                # needs at least 2 of 3 hits to continue with read
+                if (sum(self.hits_per_filter) - hit_sum) > 1:
 
-                for j in range(1, len(reads[i]) - 1 - self.k + 1):
-                    # Skipping first, last and middle k-mer
-                    if j != mid:
-                        self.lookup(reads[i][j:j + self.k], True)
-                        self.number_of_kmeres += 1
+                    for j in range(1, len(reads[i]) - 1 - self.k + 1):
+                        # Skipping first, last and middle k-mer
+                        if j != mid:
+                            self.lookup(reads[i][j:j + self.k], True)
+                            self.number_of_kmeres += 1
 
-            else:
-                # resetting hit counter
-                self.hits_per_filter = copy
+                else:
+                    # resetting hit counter
+                    self.hits_per_filter = copy
 
         else:
             # fasta mode
