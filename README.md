@@ -26,6 +26,8 @@ For security reasons, you need to set up an individual security key and a userna
 </p>
 
 ## Modify the Tool
+Searchable Filters can be added or removed in the 'Export Options'- Section on the website. Login to that area (see section 'Change Password and Username' in this readme) and follow the upcoming steps.
+
 ### Adding Genomes 
 
 ### Removing Genomes 
@@ -37,13 +39,13 @@ For security reasons, you need to set up an individual security key and a userna
 ### Modify Trainingdata for the SVM 
 
 
-# Python Modules - Requirements
-## Install Requirements
+# Setup
+### Python Modules - Install Requirements
 ```
 pip install -r requirements.txt
 ```
 
-## List of used Modules for Python (3.8)
+#### List of used Modules for Python (3.8)
 Flask	1.1.2	
 
 Flask-Bcrypt	0.7.1	
@@ -72,7 +74,10 @@ requests	2.23.0
 
 scikit-learn	0.23.1	
 
+### Setup
 
+#### Change Secret Key
+#### Change Password and Username in 'Expert Options'
 
 
 # How to run the App: Local Deployment
