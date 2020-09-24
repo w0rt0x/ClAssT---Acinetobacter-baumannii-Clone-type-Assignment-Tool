@@ -5,7 +5,7 @@ ClAssT uses Bloom Filters and Support Vector Machines to classify sequence-reads
 ![alt text](https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/static/Workflow_ClAssT.png)
 
 
-The Tool uses Bloom Filters to store IC-specific reference k-meres. The k-meres of the input-sequences will be checked for membership in all of the selected IC's. Hits are counted and then divided by the number of total tested k-meres of the input-sequence. This produces a 'Scre-Vector' with values between 0 and 1. This Vector will then be classified by Support Vector Machines (SVM).
+The Tool uses Bloom Filters to store IC-specific reference k-meres. The k-meres of the input-sequences will be checked for membership in all of the selected IC's. Hits are counted and then divided by the number of total tested k-meres of the input-sequence. This produces a 'Score-Vector' with values between 0 and 1. This Vector will then be classified by Support Vector Machines (SVM).
 
 If you are using sequence-reads for this analysis, then you can avoid the assembly-process. On the other hand, this Tool need high quality sequence-reads because its using exact matches of k-meres.
 
