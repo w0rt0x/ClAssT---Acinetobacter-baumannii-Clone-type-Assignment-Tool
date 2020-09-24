@@ -9,8 +9,6 @@ The Tool uses Bloom Filters to store IC-specific reference k-meres. The k-meres 
 
 If you are using sequence-reads for this analysis, then you can avoid the assembly-process. On the other hand, this Tool need high quality sequence-reads because its using exact matches of k-meres.
 
-The instructions are in the intructions.pdf file.
-
 The requirements are down below and in the requirements.txt file.
 
 For security reasons, you need to set up an individual security key and a username/password for a login. More information in the instructions.
@@ -36,7 +34,6 @@ Searchable Filters can be added or removed in the 'Export Options'- Section on t
 ### Remove OXA-Genes 
 
 ### Modify Trainingdata for the SVM 
-
 
 # Setup
 ### Python Modules - Install Requirements
@@ -89,7 +86,10 @@ You can generate a random Secret Key of variable length by using Python:
 b'\x80\xf8\xfe\xbe\xb5t*{\x88\xdc\xb3z\x17\xacz\xeasM\xf7\xd4'
 ```
 #### Change Password and Username in 'Expert Options'
-
+To gain or to limit the access to the 'Expert Options' you need to change the Username and Password by using the change_password.py script:
+<p align="center">
+  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/change_pw.png" height="40%" width="40%">
+</p>
 
 # How to run the App: Local Deployment
 
