@@ -77,7 +77,10 @@ scikit-learn	0.23.1
 ### Setup
 
 #### Change Secret Key
-
+Because of security reasons, you need to give this Tool a new Secret Key. Change the 'change_me' in the settings.cfg in the config folder to your own Secret Key :
+<p align="center">
+  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/secretkey.png" height="50%" width="50%">
+</p>
 You can generate a random Secret Key of variable length by using Python:
 ```
 >>> import os
