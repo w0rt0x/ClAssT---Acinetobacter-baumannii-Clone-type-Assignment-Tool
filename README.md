@@ -15,6 +15,9 @@ The requirements are down below and in the requirements.txt file.
 
 For security reasons, you need to set up an individual security key and a username/password for a login. More information in the instructions.
 
+# How to use the Tool
+## Assigning Files
+![alt text](https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/Instructions/pictures/How2Use.png )
 
 # Python Modules - Requirements
 ## Install Requirements
