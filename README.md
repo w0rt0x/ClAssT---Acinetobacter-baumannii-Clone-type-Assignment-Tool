@@ -18,10 +18,9 @@ For security reasons, you need to set up an individual security key and a userna
 # How to use the Tool
 ## Assigning Files
 <p align="center">
-  <b>Some Links:</b><br>
-  <a href="#">Choose File and Submit</a> |
-  <a href="#"> wait </a> |
-  <a href="#"> get Results </a>
+  <b> Choose a file and submit</b><br>
+  <b> wait </b><br>
+  <b> get Results </b><br>
   <br><br>
   <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/How2Use.png" height="50%" width="50%">>
 </p>
