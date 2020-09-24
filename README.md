@@ -40,6 +40,7 @@ Searchable Filters can be added or removed in the 'Export Options'- Section on t
 
 # Setup
 ### Python Modules - Install Requirements
+Using a virtual environment is recommended.
 ```
 pip install -r requirements.txt
 ```
@@ -76,6 +77,13 @@ scikit-learn	0.23.1
 ### Setup
 
 #### Change Secret Key
+
+You can generate a random Secret Key of variable length by using Python:
+```
+>>> import os
+>>> os.urandom(20)
+b'\x80\xf8\xfe\xbe\xb5t*{\x88\xdc\xb3z\x17\xacz\xeasM\xf7\xd4'
+```
 #### Change Password and Username in 'Expert Options'
 
 
