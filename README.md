@@ -37,8 +37,6 @@ Searchable Filters can be added or removed in the 'Export Options'- Section on t
 
 ### Modify Trainingdata for the SVM 
 
-<br>
-<br>
 # Setup
 ### Python Modules - Install Requirements
 Using a virtual environment is recommended.
