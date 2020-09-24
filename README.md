@@ -27,6 +27,10 @@ Searchable Filters can be added or removed in the 'Export Options'- Section on t
 
 ### Adding Genomes 
 
+<p align="center">
+  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/AddFilter.png" height="50%" width="50%">
+</p>
+
 ### Removing Genomes 
 
 ### Add OXA-Genes
