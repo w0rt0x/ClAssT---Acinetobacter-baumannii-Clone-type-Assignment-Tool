@@ -17,12 +17,11 @@ For security reasons, you need to set up an individual security key and a userna
 
 # How to use the Tool
 ## Assigning Files
-<p align="center">
   <b> 1) Choose a file and submit</b><br>
   <b> 2) wait </b><br>
   <b> 3) get Results </b><br>
-  <br><br>
-  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/How2Use.png" height="50%" width="50%">>
+<p align="center">
+  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/How2Use.png" height="50%" width="50%">
 </p>
 
 ## Modify the Tool
