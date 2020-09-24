@@ -11,7 +11,7 @@ If you are using sequence-reads for this analysis, then you can avoid the assemb
 
 The requirements are down below and in the requirements.txt file.
 
-For security reasons, you need to set up an individual security key and a username/password for a login. More information in the instructions.
+For security reasons, you need to set up an individual security key and a username/password for a login. More information in the following instructions.
 
 # How to use the Tool
 ## Assigning Files
