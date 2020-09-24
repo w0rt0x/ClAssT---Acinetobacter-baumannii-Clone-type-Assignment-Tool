@@ -91,7 +91,7 @@ b'\x80\xf8\xfe\xbe\xb5t*{\x88\xdc\xb3z\x17\xacz\xeasM\xf7\xd4'
 #### Change Password and Username in 'Expert Options'
 To gain or to limit the access to the 'Expert Options' you need to change the Username and Password by using the change_password.py script:
 <p align="center">
-  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/change_pw.png" height="30%" width="30%">
+  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/change_pw.png" height="40%" width="40%">
 </p>
 
 # How to run the App: Local Deployment
