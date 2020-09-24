@@ -17,7 +17,7 @@ For security reasons, you need to set up an individual security key and a userna
 
 # How to use the Tool
 ## Assigning Files
-![alt text](https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/Instructions/pictures/How2Use.png )
+![How2Use](https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/Instructions/pictures/How2Use.png)
 
 # Python Modules - Requirements
 ## Install Requirements
