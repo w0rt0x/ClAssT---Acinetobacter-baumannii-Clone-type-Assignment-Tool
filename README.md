@@ -26,15 +26,15 @@ For security reasons, you need to set up an individual security key and a userna
 </p>
 
 ## Modify the Tool
-###### Adding Genomes 
+### Adding Genomes 
 
-###### Removing Genomes 
+### Removing Genomes 
 
-###### Add OXA-Genes
+### Add OXA-Genes
 
-###### Remove OXA-Genes 
+### Remove OXA-Genes 
 
-###### Modify Trainingdata for the SVM 
+### Modify Trainingdata for the SVM 
 
 
 # Python Modules - Requirements
