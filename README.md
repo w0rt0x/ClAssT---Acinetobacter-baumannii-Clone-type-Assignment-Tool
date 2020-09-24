@@ -9,8 +9,6 @@ The Tool uses Bloom Filters to store IC-specific reference k-meres. The k-meres 
 
 If you are using sequence-reads for this analysis, then you can avoid the assembly-process. On the other hand, this Tool need high quality sequence-reads because its using exact matches of k-meres.
 
-The instructions are in the intructions.pdf file.
-
 The requirements are down below and in the requirements.txt file.
 
 For security reasons, you need to set up an individual security key and a username/password for a login. More information in the instructions.
