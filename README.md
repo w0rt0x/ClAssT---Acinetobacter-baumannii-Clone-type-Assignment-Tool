@@ -39,7 +39,7 @@ Searchable Filters can be added or removed in the 'Export Options'- Section on t
 
 ### Modify Trainingdata for the SVM 
 <p align="center">
-  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/modify_vecs.png" height="40%" width="40%">
+  <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/modify_vecs.png" height="50%" width="50%">
 </p>
 
 # Setup
