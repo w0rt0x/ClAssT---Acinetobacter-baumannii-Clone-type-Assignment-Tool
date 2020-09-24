@@ -48,6 +48,7 @@ Adding OXA-Genes is almost similar to adding Genomes, but without any Score-Vect
 All deletable OXA-Genes are shown. Copy the name of the one you want to delete, paste in into the text field and submit.
 
 ### Modify Trainingdata for the SVM 
+This function allows you to change the Trainingvectors for the SVM. There must be at least one vector per label!
 <p align="center">
   <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/modify_vecs.png" height="50%" width="50%">
 </p>
