@@ -26,16 +26,23 @@ For security reasons, you need to set up an individual security key and a userna
 Searchable Filters can be added or removed in the 'Export Options'- Section on the website. Login to that area (see section 'Change Password and Username' in this readme) and follow the upcoming steps.
 
 ### Adding Genomes 
-
+1) Choose a name 
+2) Select the file that contains the Genome from your Computer
+3) Add/Expand the SVM Training-Vectors:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1) Change the 'Score_new' to the corresponding Value between 0 and 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2) Add the new Score-Vectors of the genome with the corresponding Value between 0 and 1. The format must be ['Filename', Score-IC1, Score-IC2,..., Score_of_new, Label]. The Label in the last Column must match the previous entered name in step 1). There needs to be at least one Training-Vector for the new Genome.
 <p align="center">
   <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/AddFilter.png" height="50%" width="50%">
 </p>
 
 ### Removing Genomes 
+All deletable Genomes are shown. Copy the name of the one you want to delete, paste in into the text field and submit.
 
 ### Add OXA-Genes
+Adding OXA-Genes is almost similar to adding Genomes, but without any Score-Vectors. Add the .fasta-file with the gene, put a name into the text-field and submit.
 
 ### Remove OXA-Genes 
+All deletable OXA-Genes are shown. Copy the name of the one you want to delete, paste in into the text field and submit.
 
 ### Modify Trainingdata for the SVM 
 <p align="center">
