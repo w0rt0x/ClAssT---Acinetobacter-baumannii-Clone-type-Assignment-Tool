@@ -18,12 +18,23 @@ For security reasons, you need to set up an individual security key and a userna
 # How to use the Tool
 ## Assigning Files
 <p align="center">
-  <b> Choose a file and submit</b><br>
-  <b> wait </b><br>
-  <b> get Results </b><br>
+  <b> 1) Choose a file and submit</b><br>
+  <b> 2) wait </b><br>
+  <b> 3) get Results </b><br>
   <br><br>
   <img src="https://github.com/w0rt0x/ClAssT---Acinetobacter-baumannii-Clone-type-Assignment-Tool/blob/master/Instructions/pictures/How2Use.png" height="50%" width="50%">>
 </p>
+
+## Modify the Tool
+###### Adding Genomes 
+
+###### Removing Genomes 
+
+###### Add OXA-Genes
+
+###### Remove OXA-Genes 
+
+###### Modify Trainingdata for the SVM 
 
 
 # Python Modules - Requirements
