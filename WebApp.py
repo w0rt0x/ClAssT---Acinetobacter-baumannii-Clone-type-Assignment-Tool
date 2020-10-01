@@ -30,6 +30,8 @@ login_manager = LoginManager(app)
 
 # Login System is needed, otherwise the login can be skipped and
 # the add/remove filter function is for everyone
+#allowed_user = (b'$2b$12$BDm/V.wY54Y/WpllWAJHpumh7J/nnxVgxbm01iomvQPy2v6ixGi2K',
+                #b'$2b$12$nB/HaB3etbNhj9FhqayA2eSXuQY4eyh0mbdP/c4aNN7N.WPHmz71i')
 with open(r'config/login.txt', 'rb') as fp:
     allowed_user = pickle.load(fp)
 
@@ -226,10 +228,10 @@ def assign():
         prediction = classify(r'Training_data/Training_data_IC.csv', score_ct, IC_lookup)
         # Making Label look nicer
         if 'IC' in prediction and len(prediction) == 3:
-            prediction = 'International Clonetype ' + prediction[2]
+            prediction = 'International Clone ' + prediction[2]
 
         elif prediction == 'None':
-            prediction = 'NONE of the selected Clonetypes or Genomes'
+            prediction = 'NONE of the selected Clones or Genomes'
 
         else:
             pass
