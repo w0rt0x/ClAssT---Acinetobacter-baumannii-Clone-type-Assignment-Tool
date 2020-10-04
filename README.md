@@ -139,6 +139,8 @@ python Main.py
 
 [Server Deployment](https://flask.palletsprojects.com/en/master/deploying/)
 
+[Host a app for free by using Heroku](https://www.heroku.com/)
+
 # About this project
 This project is an attempt to support hospital staff in a possible A.baumannii outbreak. A.baumannii is able to build up antibiotic resistance and can cause deadly nosocomial infections.
 
