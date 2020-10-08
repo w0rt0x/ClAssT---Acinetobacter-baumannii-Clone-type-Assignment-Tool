@@ -139,7 +139,7 @@ python Main.py
 
 [Server Deployment](https://flask.palletsprojects.com/en/master/deploying/)
 
-[Host a app for free by using Heroku](https://www.heroku.com/)
+[Host a app for free by using Heroku](https://www.heroku.com/) NOT RECOMMENDED (yet): Heroku is an easy (and free) method to host Flask Apps, but heroku will throw [Request timeout errors](https://devcenter.heroku.com/articles/error-codes#h12-request-timeout) if the server takes longer than 30 seconds to respond. Some Options take longer than 30 seconds, therefore hosting on heroku is problematic. A job sheduler can solve this problem and is planned for the future.
 
 # About this project
 This project is an attempt to support hospital staff in a possible A.baumannii outbreak. A.baumannii is able to build up antibiotic resistance and can cause deadly nosocomial infections.
