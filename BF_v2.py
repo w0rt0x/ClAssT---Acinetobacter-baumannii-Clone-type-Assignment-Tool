@@ -333,10 +333,7 @@ class AbaumanniiBloomfilter:
                 reads[r] = Seq(reads[r])
                 reads[r] = reads[r].reverse_complement()
             # lookup reverse complement
-            print(self.hits_per_filter)
-            print('checking reverse')
             self.oxa_search_genomes(reads)
-            print(self.hits_per_filter)
 
         # cleanup
         reads = None
