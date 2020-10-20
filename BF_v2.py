@@ -261,11 +261,10 @@ class AbaumanniiBloomfilter:
 
     def lookup_oxa(self, reads, ext):
         """ Looks for OXA Genes: Extension (ext) selects the fq-seach or fasta-search mode"""
-        table = OXATable()
-        table.read_dic(r'filter/OXAs_dict/oxa_dict.txt')
+        self.table = OXATable()
+        self.table.read_dic(r'filter/OXAs_dict/oxa_dict.txt')
         if ext == 'fq':
             # fq mode
-            self.table = table
             for i in range(len(reads)):
                 # going through all reads, discarding those who don't get any hits with 3 test k-meres
 
@@ -327,57 +326,36 @@ class AbaumanniiBloomfilter:
 
         else:
             # fasta mode
-
+            # Altes testen mit Genom, hits per filter ausgeben lassen
+            self.oxa_search_genomes(reads)
             for r in range(len(reads)):
-                for j in range(len(reads[r]) - self.k + 1):
-                    # New Lookup, Only k-meres that are found will be counted
-                    positions = self.hash(reads[r][j:j+self.k])
-
-                    # control if element is in filter
-                    hits = [True] * self.clonetypes
-
-                    for i in range(self.clonetypes):
-                        # all 7 Positions are hardcoded, the number of hashes is always(!) 7
-                        # if all positions  are True, then hits[i] will also stay True
-                        # (i*self.array_size) skips to the same position in the next filter
-                        hits[i] = (self.matrix[positions[0] + (i * self.array_size)] &
-                                   self.matrix[positions[1] + (i * self.array_size)] &
-                                   self.matrix[positions[2] + (i * self.array_size)] &
-                                   self.matrix[positions[3] + (i * self.array_size)] &
-                                   self.matrix[positions[4] + (i * self.array_size)] &
-                                   self.matrix[positions[5] + (i * self.array_size)] &
-                                   self.matrix[positions[6] + (i * self.array_size)])
-                        if hits[i] and table.lookup(self.names[i], reads[r][j:j+self.k]):
-                            # Update hit counter
-                            self.hits_per_filter[i] += 1
-
-                # same, but with reverse complement
+                # building reverse complement
                 reads[r] = Seq(reads[r])
                 reads[r] = reads[r].reverse_complement()
-                for j in range(len(reads[r]) - self.k + 1):
-                    # New Lookup, Only k-meres that are found will be counted
-                    positions = self.hash(str(reads[r][j:j+self.k]))
+            # lookup reverse complement
+            print(self.hits_per_filter)
+            print('checking reverse')
+            self.oxa_search_genomes(reads)
+            print(self.hits_per_filter)
 
-                    # control if element is in filter
-                    hits = [True] * self.clonetypes
-
-                    for i in range(self.clonetypes):
-                        # all 7 Positions are hardcoded, the number of hashes is always(!) 7
-                        # if all positions  are True, then hits[i] will also stay True
-                        # (i*self.array_size) skips to the same position in the next filter
-                        hits[i] = (self.matrix[positions[0] + (i * self.array_size)] &
-                                   self.matrix[positions[1] + (i * self.array_size)] &
-                                   self.matrix[positions[2] + (i * self.array_size)] &
-                                   self.matrix[positions[3] + (i * self.array_size)] &
-                                   self.matrix[positions[4] + (i * self.array_size)] &
-                                   self.matrix[positions[5] + (i * self.array_size)] &
-                                   self.matrix[positions[6] + (i * self.array_size)])
-                        if hits[i] and table.lookup(self.names[i], reads[r][j:j+self.k]):
-                            # Update hit counter
-                            self.hits_per_filter[i] += 1
-
+        # cleanup
         reads = None
-        table.cleanup()
+        self.table.cleanup()
+
+    def oxa_search_genomes(self, genome):
+        for i in genome:
+            for j in range(0, len(i), 20):
+                hits = sum(self.hits_per_filter)
+                kmer = i[j:j+self.k]
+                self.lookup(kmer, True)
+
+                if sum(self.hits_per_filter) > hits:
+                    for n in range(j - 19, j + 20, 1):
+                        if 0 <= j < len(i):
+                            kmer = i[n:n + self.k]
+                            self.lookup(kmer, True)
+                else:
+                    pass
 
     def get_oxa_score(self):
         """ Returning hits per OXA/kmere in OXA-filter"""
@@ -390,7 +368,7 @@ class AbaumanniiBloomfilter:
                 score.append(0.0)
             else:
                 score.append(round(float(self.hits_per_filter[i]) / float(counter[self.names[i]]), 2))
-
+        self.hits_per_filter = [0] * self.clonetypes
         return score
 
 
