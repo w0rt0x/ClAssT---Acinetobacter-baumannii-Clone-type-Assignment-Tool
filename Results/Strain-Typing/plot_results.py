@@ -133,24 +133,39 @@ def create_plots():
         quick_core_label = quick_core_label + [key] * len(ICs_core_quick[key])
 
     # Assemblys
-    """
+
     X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 4)
-    title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    """
+    title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested, \n Total Accuracy: '
     train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
-    title = 'SVM-Kernel: Linear, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    title = 'SVM-Kernel: Linear, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested, \n Total Accuracy: '
     train_and_plot('linear', X_train, y_train, X_test, y_test, title)
 
     X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 2)
-    title = 'SVM-Kernel: Polynomial, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    title = 'SVM-Kernel: Polynomial, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested, \n Total Accuracy: '
     train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
-    title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested, \n Total Accuracy: '
     train_and_plot('linear', X_train, y_train, X_test, y_test, title)
+    
+    title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, quick_assembly, quick_assembly_label, title)
+
+    title = 'SVM-Kernel: Linear, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, quick_assembly, quick_assembly_label, title)
+
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 2)
+    title = 'SVM-Kernel: Polynomial, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, quick_assembly, quick_assembly_label, title)
+
+    title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, quick_assembly, quick_assembly_label, title)
     """
     # Core Genome
-    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_core_full, keys, 4)
 
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_core_full, keys, 4)
+    """
     title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Core-Genome as reference , \n all k-mers are tested , \n Total Accuracy: '
     train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
@@ -163,11 +178,21 @@ def create_plots():
 
     title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Core-Genome as reference , \n all k-mers are tested , \n Total Accuracy: '
     train_and_plot('linear', X_train, y_train, X_test, y_test, title)
+    
+    title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Core-Genome as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, quick_core, quick_core_label, title)
 
-    #Reads
-    #quick run
+    title = 'SVM-Kernel: Linear, \n 4 Trainingvectors per class, \n Core-Genome as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, quick_core, quick_core_label, title)
 
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_core_full, keys, 2)
+    title = 'SVM-Kernel: Polynomial, \n 2 Trainingvectors per class, \n Core-Genome as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, quick_core, quick_core_label, title)
 
+    title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Core-Genome as reference , \n every 10th k-mer tested, \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, quick_core, quick_core_label, title)
+    """
+    # Reads
 create_plots()
 
 
