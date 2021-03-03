@@ -5,17 +5,14 @@ import csv
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import plot_confusion_matrix
 import random
-from copy import deepcopy
-
 
 def train_and_plot(kernel, X_train, y_train, X_test, y_test, title):
     svm = SVC(kernel=kernel, C=1).fit(X_train, y_train)
     svm_predictions = svm.predict(X_test)
 
     # model accuracy for X_test
-    accuracy = svm.score(X_test, y_test)
-    print('Accuracy: ', accuracy)
-    print('Confusion Matrix :')
+    accuracy = str(round(svm.score(X_test, y_test), 4))
+    title = title + accuracy
     # creating a confusion matrix
     cm = confusion_matrix(y_test, svm_predictions)
 
@@ -71,84 +68,109 @@ def get_ICs():
     return ICs
 
 
-def get_scores(file, lst):
+def get_scores(file, dic, keys):
     r = csv.reader(open(file))
     lines = list(r)
 
-    for i in range(len(lines)):
-        for x in range(len(lst)):
-            for y in range(len(lst[x])):
+    for key in keys:
+        for i in lines:
+            if i[0] in dic[key]:
+                pos = dic[key].index(i[0])
+                # Converting data to float
+                dic[key][pos] = [float(x) for x in i[1:]]
+    return dic
 
-                if lines[i][0] == lst[x][y]:
-                    lst[x][y] = lines[i][1:]
-                else:
-                    pass
+
+def get_random_training_vectors(dic, keys, n):
+    # Chooses n random vectors per class, returns them
+    # as np.arrays and separates training/test-data
+    X_train = []
+    y_train = []
+    X_test = []
+    y_test = []
+
+    # Choosing random training vectors and removing them from test-data
+    for key in keys:
+        pos = random.sample(range(0, len(dic[key])), n)
+        pos.sort()
+        for i in range(len(pos)-1, -1, -1):
+            X_train.append(dic[key][pos[i]])
+            del dic[key][pos[i]]
+            y_train.append(key)
+        # Creating test-data
+        X_test = X_test + dic[key]
+        y_test = y_test + [key] * len(dic[key])
+
+    return np.array(X_train), np.array(y_train), np.array(X_test), np.array(y_test)
 
 
-def create_plots(vecs = 4):
-    ICs = get_ICs()
-    training_assembly = [[], [], [], [], [], [], [], [], []]
-    training_core = [[], [], [], [], [], [], [], [], []]
-    label = [[], [], [], [], [], [], [], [], []]
-    # taking 4 genomes randomly for each possible classification
+def create_plots():
+    ICs_assembly = get_ICs()
+    ICs_core = get_ICs()
+
+    # Changing NCBI accession to Score-Vector
     keys = ["IC1", "IC2", "IC3", "IC4", "IC5", "IC6", "IC7", "IC8", "None"]
 
-    for i in range(len(keys)):
-        sample = random.sample(ICs[keys[i]], vecs)
-        training_assembly[i] = sample
-        training_core[i] = deepcopy(sample)
-        label[i] = [keys[i]] * vecs
+    # Full Run: all k-mers are tested
+    ICs_assembly_full = get_scores("Assemblys as reference, all k-mers.csv", ICs_assembly, keys)
+    ICs_core_full = get_scores("Core-Genome as reference, all k-mers.csv", ICs_core, keys)
+    # Quick-run: only every 10th k-mer is used
+    ICs_assembly_quick = get_scores("Assemblys as reference, quick run.csv", ICs_assembly, keys)
+    ICs_core_quick = get_scores("Core-Genome as reference, quick run.csv", ICs_core, keys)
 
-    get_scores("Assemblys as reference, all k-mers.csv", training_assembly)
-    get_scores("Core-Genome as reference, all k-mers.csv", training_core)
+    # Note on Quick-run: The Genomes used for training are from the full run, the same genomes are not removed from
+    # the testing data set in the quick-run, because only a subset of k-mers is evaluated
+    quick_assembly = []
+    quick_assembly_label = []
+    quick_core = []
+    quick_core_label = []
+    for key in keys:
+        # Assembly Reference
+        quick_assembly = quick_assembly + ICs_assembly_quick[key]
+        quick_assembly_label = quick_assembly_label + [key] * len(ICs_assembly_quick[key])
+        # Core Reference
+        quick_core = quick_core + ICs_core_quick[key]
+        quick_core_label = quick_core_label + [key] * len(ICs_core_quick[key])
 
-    # Plotting 4 Trainingvectors per label, Polynomial Kernel, Assemblys as reference, all k-mers
-    title = '4 Trainingvectors per label, Polynomial Kernel, \n Assemblys as reference, all k-mers'
-    train_and_plot('poly',)
-    # Plotting 4 Trainingvectors per label, Polynomial Kernel, Assemblys as reference, every 10th k-mer
+    # Assemblys
+    """
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 4)
+    title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 4 Trainingvectors per label, Polynomial Kernel, Core-genome as reference, all k-mers
+    title = 'SVM-Kernel: Linear, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 4 Trainingvectors per label, Polynomial Kernel, Core-genome as reference, every 10th k-mer
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 2)
+    title = 'SVM-Kernel: Polynomial, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 4 Trainingvectors per label, Linear Kernel, Assemblys as reference, all k-mers
+    title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, X_test, y_test, title)
+    """
+    # Core Genome
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_core_full, keys, 4)
 
-    # Plotting 4 Trainingvectors per label, Linear Kernel, Assemblys as reference, every 10th k-mer
+    title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Core-Genome as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 4 Trainingvectors per label, Linear Kernel, Core-genome as reference, all k-mers
+    title = 'SVM-Kernel: Linear, \n 4 Trainingvectors per class, \n Core-Genome as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 4 Trainingvectors per label, Linear Kernel, Core-genome as reference, every 10th k-mer
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_core_full, keys, 2)
+    title = 'SVM-Kernel: Polynomial, \n 2 Trainingvectors per class, \n Core-Genome as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 2 Trainingvectors per label, Polynomial Kernel, Assemblys as reference, all k-mers
+    title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Core-Genome as reference , \n all k-mers are tested , \n Total Accuracy: '
+    train_and_plot('linear', X_train, y_train, X_test, y_test, title)
 
-    # Plotting 2 Trainingvectors per label, Polynomial Kernel, Assemblys as reference, every 10th k-mer
-
-    # Plotting 2 Trainingvectors per label, Polynomial Kernel, Core-genome as reference, all k-mers
-
-    # Plotting 2 Trainingvectors per label, Polynomial Kernel, Core-genome as reference, every 10th k-mer
-
-    # Plotting 2 Trainingvectors per label, Linear Kernel, Assemblys as reference, all k-mers
-
-    # Plotting 2 Trainingvectors per label, Linear Kernel, Assemblys as reference, every 10th k-mer
-
-    # Plotting 2 Trainingvectors per label, Linear Kernel, Core-genome as reference, all k-mers
-
-    # Plotting 2 Trainingvectors per label, Linear Kernel, Core-genome as reference, every 10th k-mer
-
-    # Plotting Reads with 4 vectors per label, polynomial Kernel, Assemblys as reference
-
-    # Plotting Reads with 4 vectors per label, polynomial Kernel, Core-Genome as reference
+    #Reads
+    #quick run
 
 
+create_plots()
 
 
-
-create_plots(4)
-
-#print("Anleitung")
-#Kernel, Anzahl tranining, Art Training, reads oder Assembly,Quick oder normal
-
-#OXA extra
 
 
 
