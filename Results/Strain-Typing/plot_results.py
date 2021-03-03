@@ -104,6 +104,22 @@ def get_random_training_vectors(dic, keys, n):
     return np.array(X_train), np.array(y_train), np.array(X_test), np.array(y_test)
 
 
+def get_read_data(file, dic, keys):
+    """ Assigns reads to labels"""
+    r = csv.reader(open(file))
+    lines = list(r)
+    vecs = []
+    labels = []
+    for key in keys:
+        for i in dic[key]:
+            for j in lines:
+                if i in j[0]:
+                    vecs.append(j[2:])
+                    labels.append(key)
+
+    return np.array(vecs), np.array(labels)
+
+
 def create_plots():
     ICs_assembly = get_ICs()
     ICs_core = get_ICs()
@@ -135,7 +151,7 @@ def create_plots():
     # Assemblys
 
     X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 4)
-    """
+
     title = 'SVM-Kernel: Polynomial, \n 4 Trainingvectors per class, \n Assembled Genomes as reference , \n all k-mers are tested, \n Total Accuracy: '
     train_and_plot('poly', X_train, y_train, X_test, y_test, title)
 
@@ -191,8 +207,31 @@ def create_plots():
 
     title = 'SVM-Kernel: Linear, \n 2 Trainingvectors per class, \n Core-Genome as reference , \n every 10th k-mer tested, \n Total Accuracy: '
     train_and_plot('linear', X_train, y_train, quick_core, quick_core_label, title)
-    """
+
     # Reads
+    dic = get_ICs()
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_assembly_full, keys, 4)
+    # Assembly as Reference, unmodified reads
+    X_reads, y_reads = get_read_data('Reads as Input, Assembly as Reference.csv', dic, keys)
+    title = 'Sequence-Reads as Input, \n SVM-Kernel: Poly, \n 4 Trainingvectors per class, \n Assembled Genomes as reference,\n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_reads, y_reads, title)
+
+    # Assembly as Reference, modified reads
+    X_reads, y_reads = get_read_data('Reads as Input, Assembly as Reference, 15% of the nucleotides changed.csv', dic, keys)
+    title = 'Reads with 15% changed Nucleotides as Input, \n SVM-Kernel: Poly, \n 4 Trainingvectors per class, \n Core-Genome as reference,\n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_reads, y_reads, title)
+
+    # Core as Reference, unmodified Reads
+    X_train, y_train, X_test, y_test = get_random_training_vectors(ICs_core_full, keys, 4)
+    X_reads, y_reads = get_read_data('Reads as Input, Core-Genome as Reference.csv', dic, keys)
+    title = 'Sequence-Reads as Input, \n SVM-Kernel: Poly, \n 4 Trainingvectors per class, \n Core-Genome as reference,\n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_reads, y_reads, title)
+
+    # Core as Reference, modified reads
+    X_reads, y_reads = get_read_data('Reads as Input, Core-Genome as Reference, 15% of the nucleotides changed.csv', dic, keys)
+    title = 'Reads with 15% changed Nucleotides as Input, \n SVM-Kernel: Poly, \n 4 Trainingvectors per class, \n Core-Genome as reference,\n Total Accuracy: '
+    train_and_plot('poly', X_train, y_train, X_reads, y_reads, title)
+
 create_plots()
 
 
