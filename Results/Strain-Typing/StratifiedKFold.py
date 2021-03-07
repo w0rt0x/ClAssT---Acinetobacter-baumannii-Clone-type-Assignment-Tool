@@ -277,9 +277,21 @@ def create_plots():
     print_stats(acc)
 
     # Testing Sequence Reads
+    print('StratifiedKFold (n=10): Assembled genomes as reference, unmodified forward reads')
 
+    print('StratifiedKFold (n=10): Assembled genomes as reference, unmodified reverse reads')
 
+    print('StratifiedKFold (n=10): Assembled genomes as reference, forward reads with 15% randomly changed nucleotides')
 
+    print('StratifiedKFold (n=10): Assembled genomes as reference, reverse reads with 15% randomly changed nucleotides')
+
+    print('StratifiedKFold (n=10): Core Genome as reference, unmodified forward reads')
+
+    print('StratifiedKFold (n=10): Core Genome as reference, unmodified reverse reads')
+
+    print('StratifiedKFold (n=10): Core Genome as reference, forward reads with 15% randomly changed nucleotides')
+
+    print('StratifiedKFold (n=10): Core Genome as reference, reverse reads with 15% randomly changed nucleotides')
 
 
 create_plots()
